@@ -1,5 +1,5 @@
 require "heroku"
-require "pgbackups/client"
+require "heroku/client/pgbackups"
 
 module HerokuBackupTask; class << self
 
@@ -12,7 +12,7 @@ module HerokuBackupTask; class << self
   end
 
   def client
-    @client ||= PGBackups::Client.new(ENV["PGBACKUPS_URL"])
+    @client ||= Heroku::Client::Pgbackups.new(ENV["PGBACKUPS_URL"])
   end
 
   def databases
